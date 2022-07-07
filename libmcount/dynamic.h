@@ -2,7 +2,15 @@
 #define UFTRACE_MCOUNT_DYNAMIC_H
 
 #include <link.h>
-
+#ifdef HAVE_LIBCAPSTONE
+#include <capstone/capstone.h>
+struct mcount_disasm_engine {
+	csh engine;
+}
+#else
+struct mcount_disasm_engine {
+}
+#endif
 #include "utils/symbol.h"
 
 #define PAGE_SIZE 4096
@@ -13,7 +21,8 @@
 #define PATCHABLE_SECT "__patchable_function_entries"
 
 /* target instrumentation function it needs to call */
-extern void __fentry__(void);
+extern void
+__fentry__(void);
 extern void __dentry__(void);
 extern void __xray_entry(void);
 extern void __xray_exit(void);
@@ -51,12 +60,6 @@ struct mcount_dynamic_info {
 	enum mcount_dynamic_type type;
 	void *patch_target;
 	unsigned nr_patch_target;
-};
-
-struct mcount_disasm_engine {
-#ifdef HAVE_LIBCAPSTONE
-	csh engine;
-#endif
 };
 
 #define INSTRUMENT_SUCCESS 0

@@ -1,13 +1,12 @@
+#include <inttypes.h>
 #include <stdio.h>
-#include <inttypes.h>
 #include <string.h>
-#include <inttypes.h>
 
 #include "uftrace.h"
-#include "utils/report.h"
-#include "utils/fstack.h"
-#include "utils/utils.h"
 #include "utils/field.h"
+#include "utils/fstack.h"
+#include "utils/report.h"
+#include "utils/utils.h"
 
 static void init_time_stat(struct report_time_stat *ts)
 {
