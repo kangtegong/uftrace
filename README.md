@@ -4,6 +4,8 @@
 uftrace
 =======
 
+test
+
 The uftrace tool is to trace and analyze execution of a program
 written in C/C++.  It was heavily inspired by the ftrace framework
 of the Linux kernel (especially function graph tracer) and supports
